@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}تواصل معنا | كيان المعادن{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="page-banner-inner">
+            <span class="section-tag">تواصل معنا</span>
+            <h1>نحن هنا لمساعدتك في كل خطوة</h1>
+        </div>
+    </div>
+</section>
+
+<section class="contact-page py-5">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <div class="contact-info-panel">
+                    <h3>معلومات التواصل</h3>
+                    <div class="contact-listing">
+                        <div class="info-item">
+                            <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <span>الهاتف</span>
+                                <a href="tel:{{ company.phone_1 }}">{{ company.phone_1 }}</a>
+                                <a href="tel:{{ company.phone_2 }}">{{ company.phone_2 }}</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
+                            <div>
+                                <span>واتساب</span>
+                                <a href="{{ company.whatsapp_link }}" target="_blank" rel="noopener noreferrer">{{ company.whatsapp_1 }}</a>
+                                <a href="https://wa.me/{{ company.whatsapp_2 }}" target="_blank" rel="noopener noreferrer">{{ company.whatsapp_2 }}</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon"><i class="fa-regular fa-envelope"></i></div>
+                            <div>
+                                <span>البريد الإلكتروني</span>
+                                <a href="mailto:{{ company.email }}">{{ company.email }}</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <span>العنوان</span>
+                                <p>{{ company.address_riyadh }}</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon"><i class="fa-regular fa-clock"></i></div>
+                            <div>
+                                <span>مواعيد العمل</span>
+                                <p>{{ company.working_hours }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="contact-form-panel">
+                    <h3>أرسل طلبك</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form.phone.label_tag }}
+                                {{ form.phone }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form.service.label_tag }}
+                                {{ form.service }}
+                            </div>
+                            <div class="col-12">
+                                {{ form.message.label_tag }}
+                                {{ form.message }}
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-primary-custom w-100">إرسال الرسالة</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 g-4">
+            <div class="col-lg-12">
+                <div class="map-box">
+                    <iframe src="{{ company.google_maps_embed_url }}" title="موقع {{ company.company_name }} على الخريطة" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 g-4">
+            <div class="col-md-6 col-xl-2">
+                <a href="{{ company.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="social-action-card whatsapp-card">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+            {% if company.instagram_url %}<div class="col-md-6 col-xl-2">
+                <a href="{{ company.instagram_url }}" target="_blank" rel="noopener noreferrer" class="social-action-card instagram-card">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+            </div>{% endif %}
+            {% if company.facebook_url %}<div class="col-md-6 col-xl-2">
+                <a href="{{ company.facebook_url }}" target="_blank" rel="noopener noreferrer" class="social-action-card facebook-card">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+            </div>{% endif %}
+            {% if company.tiktok_url %}<div class="col-md-6 col-xl-2">
+                <a href="{{ company.tiktok_url }}" target="_blank" rel="noopener noreferrer" class="social-action-card tiktok-card">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <span>TikTok</span>
+                </a>
+            </div>{% endif %}
+            <div class="col-md-6 col-xl-2">
+                <a href="tel:{{ company.phone_1 }}" class="social-action-card call-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>اتصال</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

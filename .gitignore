@@ -1,0 +1,9 @@
+.env
+.venv/
+Kayan/
+__pycache__/
+*.py[cod]
+config/.env
+config/db.sqlite3
+config/media/
+config/staticfiles/

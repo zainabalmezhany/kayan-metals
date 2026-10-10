@@ -1,0 +1,28 @@
+databases:
+  - name: kayan-metals-db
+    plan: basic-256mb
+    databaseName: kayan_metals
+    user: kayan_metals
+
+services:
+  - type: web
+    name: kayan-metals
+    runtime: python
+    plan: starter
+    rootDir: config
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    releaseCommand: python manage.py migrate --noinput
+    startCommand: gunicorn config.wsgi:application
+    disk:
+      name: kayan-media
+      mountPath: /opt/render/project/src/config/media
+      sizeGB: 1
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: kayan-metals-db
+          property: connectionString

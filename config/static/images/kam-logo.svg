@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">KAM Kayan Metals</title>
+  <rect width="260" height="200" fill="#fff"/>
+  <rect x="2" y="8" width="4" height="192" fill="#91a96b"/>
+  <path d="M26 69h22v28l27-28h29l-34 37 34 35H75l-27-28v28H26z" fill="#ad813e"/>
+  <path d="m78 141 49-72 49 72h-28l-21-32-22 32z" fill="#ad813e"/>
+  <path d="m107 141 20-29 20 29z" fill="#303033"/>
+  <path d="M144 69h27l22 31 24-31h24v72h-23v-40l-25 31-23-31v40h-26z" fill="#454547"/>
+  <path d="M26 158h214M26 165h214" fill="none" stroke="#454547" stroke-width="2"/>
+</svg>

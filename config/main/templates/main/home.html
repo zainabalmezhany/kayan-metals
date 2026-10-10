@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block title %}كيان المعادن | خدمات المقاولات العامة في الرياض{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <div class="hero-content">
+                    <span class="badge-kayan">خدمات صناعية ومقاولات متكاملة</span>
+                    <h1>شركة كيان المعادن للمقاولات العامة </h1>
+                    <p>نقدم خدمات الهدم، الحفر، تجهيز المواقع، شراء وبيع الخردة المعدنية، ونقل المخلفات بسرعة عالية وسلامة فائقة بأسعار تنافسية.</p>
+                    <div class="hero-actions">
+                        <a href="{{ company.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-primary-custom btn-lg">احجز استشارة مجانية</a>
+                        <a href="tel:{{ company.phone_1 }}" class="btn btn-outline-light btn-lg">اتصل الآن</a>
+                    </div>
+                    <div class="hero-metrics">
+                        <div>
+                            <strong>+10</strong>
+                            <span>سنوات خبرة</span>
+                        </div>
+                        <div>
+                            <strong>24/7</strong>
+                            <span>استجابة سريعة</span>
+                        </div>
+                        <div>
+                            <strong>100%</strong>
+                            <span>أمان والمصداقية</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="quote-card">
+                    <h3>اطلب عرض سعر مجاني</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form.phone.label_tag }}
+                                {{ form.phone }}
+                            </div>
+                            <div class="col-12">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                            </div>
+                            <div class="col-12">
+                                {{ form.service.label_tag }}
+                                {{ form.service }}
+                            </div>
+                            <div class="col-12">
+                                {{ form.message.label_tag }}
+                                {{ form.message }}
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-primary-custom w-100">إرسال الطلب</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="trust-strip">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="row g-3 align-items-center text-center text-md-start">
+            <div class="col-md-3"><span>أسعار تنافسية</span></div>
+            <div class="col-md-3"><span>سجل أمان عالي</span></div>
+            <div class="col-md-3"><span>تسليم سريع</span></div>
+            <div class="col-md-3"><span>خدمة عملاء متميزة</span></div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="services-section py-5">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="section-head text-center mb-5">
+            <span class="section-tag">خدماتنا</span>
+            <h2>حلول متكاملة للمقاولات والصناعة</h2>
+        </div>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <img src="{{ service.photo_url }}" alt="معدات وأعمال {{ service.title }}" class="service-image" loading="lazy">
+                    </div>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.short_description }}</p>
+                    <a href="{{ service.get_absolute_url }}">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center text-white-50">لا توجد خدمات متاحة حالياً.</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="about-highlight">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <div class="section-head mb-4">
+                    <span class="section-tag">لماذا {{ company.company_name }}</span>
+                    <h2>شريك موثوق لنجاح مشاريعك</h2>
+                </div>
+                <p>نحن في كيان المعادن نقدم خدمات مهنية وموثوقة في مجال الهدم، الحفر، تجهيز المواقع، شراء وبيع الخردة المعدنية، مع الالتزام بأعلى مستويات السلامة والكفاءة والالتزام بالمواعيد.</p>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check"></i> فرق مدربة ومتخصصة</li>
+                    <li><i class="fa-solid fa-check"></i> معدات وآلات مناسبة للمشاريع الثقيلة</li>
+                    <li><i class="fa-solid fa-check"></i> معالجة سريعة للنفايات والمخلفات</li>
+                    <li><i class="fa-solid fa-check"></i> أسعار تنافسية وشفافة</li>
+                </ul>
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-primary-custom mt-3">ناقش مشروعك معنا</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <strong>1200+</strong>
+                        <span>مقترح جاهز</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>350+</strong>
+                        <span>مشروع منجز</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>18</strong>
+                        <span>فريق متخصص</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>24/7</strong>
+                        <span>استجابة فورية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="projects-section py-5">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="section-head text-center mb-5">
+            <span class="section-tag">أحدث المشاريع</span>
+            <h2>مشاريع تنفذ باحترافية</h2>
+        </div>
+        <div class="row g-4">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6">
+                <div class="project-card">
+                    {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid">
+                    {% else %}
+                        <div class="project-placeholder"><i class="fa-solid fa-building"></i></div>
+                    {% endif %}
+                    <div class="project-content">
+                        <h3>{{ project.title }}</h3>
+                        <p class="location"><i class="fa-solid fa-location-dot"></i> {{ project.location }}</p>
+                        <p>{{ project.description|truncatechars:120 }}</p>
+                        <span class="date">{{ project.completion_date|date:'d/m/Y' }}</span>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center text-white-50">لا توجد مشاريع حالياً.</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="cta-banner">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="cta-box">
+            <div>
+                <span class="section-tag">خدمة فورية</span>
+                <h2>تواصل معنا اليوم واحصل على عرض سعر سريع</h2>
+            </div>
+            <div class="cta-actions">
+                <a href="{{ company.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-primary-custom">WhatsApp الآن</a>
+                <a href="tel:{{ company.phone_1 }}" class="btn btn-outline-light">اتصال مباشر</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

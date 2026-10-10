@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} | كيان المعادن{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="page-banner-inner">
+            <span class="section-tag">خدمتنا</span>
+            <h1>{{ service.title }}</h1>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container-fluid px-3 px-lg-5">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <div class="service-detail-card">
+                    {% if service.image %}
+                        <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid service-detail-image">
+                    {% else %}
+                        <img src="{{ service.photo_url }}" alt="معدات وأعمال {{ service.title }}" class="img-fluid service-detail-image">
+                    {% endif %}
+                    <div class="service-detail-body">
+                        <h2>{{ service.title }}</h2>
+                        <p class="service-detail-summary">{{ service.short_description }}</p>
+                        <div class="service-description">{{ service.full_description|linebreaks }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="quote-side-card">
+                    <h3>اطلب خدمة الآن</h3>
+                    <p>احصل على عرض سعر سريع ومخصص وفق احتياجك.</p>
+                    <a href="{{ company.whatsapp_link }}?text={{ service.title|urlencode }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-primary-custom w-100 mb-2">اطلب عبر WhatsApp</a>
+                    <a href="tel:{{ company.phone_1 }}" class="btn btn-outline-light w-100">اتصل مباشرة</a>
+                </div>
+            </div>
+        </div>
+
+        {% if related_services %}
+        <div class="row mt-5 g-4">
+            <div class="col-12">
+                <div class="section-head mb-4">
+                    <span class="section-tag">قد يهمك أيضًا</span>
+                    <h2>خدمات مشابهة</h2>
+                </div>
+            </div>
+            {% for item in related_services %}
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card h-100">
+                    <div class="service-icon"><img src="{{ item.photo_url }}" alt="معدات وأعمال {{ item.title }}" class="service-image" loading="lazy"></div>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.short_description }}</p>
+                    <a href="{{ item.get_absolute_url }}">اقرأ المزيد <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
